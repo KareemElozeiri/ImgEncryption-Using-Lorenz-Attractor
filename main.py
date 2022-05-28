@@ -93,6 +93,7 @@ cv2.waitKey(0)
 
 e_text = " - encrypted"
 o_text = " - original"
+d_text = "- decrypted"
 
 blue_histogram, red_histogram, green_histogram = get_color_distribution(img)
 
@@ -103,7 +104,7 @@ print("entropy without shuffling",skimage.measure.shannon_entropy(encrypted_img)
 print("entropy with shuffling",skimage.measure.shannon_entropy(encrypted_shuffled_img))
 
 
-fig, axes =   plt.subplots(3,2)
+fig, axes =   plt.subplots(3,3)
 
 axes[0,0].set_title("Blue Color Distribution"+o_text)
 axes[0,0].hist(blue_histogram,color="darkblue")
@@ -124,6 +125,17 @@ axes[1,1].hist(green_histogram,color="green")
 
 axes[2,1].set_title("Red Color Distribution"+e_text)
 axes[2,1].hist(red_histogram,color="red")
+
+blue_histogram, red_histogram, green_histogram = get_color_distribution(decrypted_img)
+
+axes[0,2].set_title("Blue Color Distribution"+d_text)
+axes[0,2].hist(blue_histogram,color="darkblue")
+ 
+axes[1,2].set_title("Green Color Distribution"+d_text)
+axes[1,2].hist(green_histogram,color="green")
+
+axes[2,2].set_title("Red Color Distribution"+d_text)
+axes[2,2].hist(red_histogram,color="red")
 
 plt.tight_layout()
 plt.show()
