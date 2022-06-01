@@ -16,6 +16,10 @@ pip install cv2
 ```
 pip install numpy
 ```
+- Scikit-Image
+```
+pip install scikit-image
+```
 
 ## Author:
 - Kareem Elozeiri
