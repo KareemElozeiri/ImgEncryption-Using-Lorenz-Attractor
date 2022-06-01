@@ -4,7 +4,7 @@ import skimage
 import matplotlib.pyplot as plt
 from src.lorenz_keys import *
 from src.distribution import get_color_distribution
-img = cv2.imread("Lenna.png")
+img = cv2.imread("realMadrid.jpeg")
 
 height = img.shape[0] 
 width =  img.shape[1]
@@ -27,12 +27,12 @@ k = 0
 
 for i in range(height):
     for j in range(width):
-        key = int((z_keys[k]*pow(10, 15))%256)
+        key = int((z_keys[k]*pow(10, 15))%255)
         encrypted_img[i, j] = img[i, j]^key
         k += 1
 
 #shuffling
-encrypted_shuffled_img = np.zeros(shape=[width, height,3], dtype=np.uint8)
+encrypted_shuffled_img = np.zeros(shape=[height, width,3], dtype=np.uint8)
 
 for i in range(height):
     k = 0
@@ -78,7 +78,7 @@ for i in range(height):
 k = 0
 for i in range(height):
     for j in range(width):
-        key = int((z_keys[k]*pow(10, 15))%256)
+        key = int((z_keys[k]*pow(10, 15))%255)
         decrypted_img[i, j] = decrypted_img[i, j]^key
         k += 1
 
@@ -139,3 +139,7 @@ axes[2,2].hist(red_histogram,color="red")
 
 plt.tight_layout()
 plt.show()
+
+
+cv2.imwrite("encrypted.png",encrypted_shuffled_img)
+cv2.imwrite("decrypted.png",decrypted_img)
