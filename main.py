@@ -4,7 +4,7 @@ import skimage
 import matplotlib.pyplot as plt
 from src.lorenz_keys import *
 from src.distribution import get_color_distribution
-img = cv2.imread("realMadrid.jpeg")
+img = cv2.imread("./assets/realMadrid.jpeg")
 
 height = img.shape[0] 
 width =  img.shape[1]
@@ -141,5 +141,5 @@ plt.tight_layout()
 plt.show()
 
 
-cv2.imwrite("encrypted.png",encrypted_shuffled_img)
-cv2.imwrite("decrypted.png",decrypted_img)
+cv2.imwrite("./assets/encrypted.png",encrypted_shuffled_img)
+cv2.imwrite("./assets/decrypted.png",decrypted_img)
