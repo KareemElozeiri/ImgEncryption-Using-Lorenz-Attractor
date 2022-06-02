@@ -1,6 +1,5 @@
 # ImgEncryption-Using-Lorenz-Attractor
-## Description:
-  the aim of this project is to utilize the chaotic properties of lorenz attractor and its sensitivity to initial conditions to encrypt images.
+  The aim of this project is to utilize the chaotic properties of lorenz attractor and its sensitivity to initial conditions to encrypt images.
 ## Papers that inspired the project:
 - to be added
 ## Installs:
