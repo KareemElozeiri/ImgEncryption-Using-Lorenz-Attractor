@@ -11,7 +11,7 @@ matplotlib
 opencv-python
 flask
 ```
--Just Run the following pip install command to install all these packages:
+- Just Run the following pip install command to install all these packages:
 ```
 pip install -r requirements.txt
 ```
