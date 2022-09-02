@@ -11,6 +11,81 @@ class Lorenz:
         self.__r = r 
         self.__dt = dt 
     
+    #getters 
+    @property
+    def steps_num(self)->int:
+        return self.__steps_num
+    
+    @property
+    def x_0(self)->float:
+        return self.__x_0
+    
+    @property
+    def y_0(self)->float:
+        return self.__y_0
+    
+    @property
+    def z_0(self)->float:
+        return self.__z_0 
+    
+    @property
+    def a(self)->float:
+        return self.__a 
+    
+    @property
+    def b(self)->float:
+        return self.__b  
+    
+    @property
+    def r(self)->float:
+        return self.__r
+
+    @property 
+    def dt(self)->float:
+        return self.__dt 
+    
+    #setters
+    @x_0.setter
+    def x_0(self, new_x:float)->None:
+        if not isinstance(new_x, float):
+            raise TypeError("Intial x value 'x_0' must be a float")
+        self.__x_0 = new_x 
+
+    @y_0.setter
+    def y_0(self, new_y:float)->None:
+        if not isinstance(new_y, float):
+            raise TypeError("Intial y value 'y_0' must be a float")
+        self.__y_0 = new_y 
+
+    @z_0.setter
+    def z_0(self, new_z:float)->None:
+        if not isinstance(new_z, float):
+            raise TypeError("Intial z value 'z_0' must be a float")
+        self.__z_0 = new_z 
+    
+    @a.setter
+    def a(self, new_a:float)->None:
+        if not isinstance(new_a, float):
+            raise TypeError("a value must be a float")
+        self.__a  = new_a 
+    
+    @b.setter
+    def b(self, new_b:float)->None:
+        if not isinstance(new_b, float):
+            raise TypeError("b value must be a float")
+        self.__b = new_b 
+    
+    @r.setter
+    def r(self, new_r:float)->None:
+        if not isinstance(new_r, tuple):
+            raise TypeError("r value must be a float")
+        self.__r = new_r
+
+    @dt.setter 
+    def dt(self, new_dt:float)->None:
+        if not isinstance(new_y, tuple):
+            raise TypeError("the delta time value 'dt' must be a float")
+        self.__dt = new_dt
 
     
     def __lorenz_keys_euler(self) -> Tuple[list, list, list]:
@@ -117,14 +192,18 @@ class Lorenz:
 
         return reshuffled_img
 
-    def encrypt(self, img:np.array, shuffle=True)-> np.array:
+    def encrypt(self, img:np.array, euler=True,shuffle=True)-> np.array:
         height = img.shape[0] 
         width =  img.shape[1]
         self.__steps_num = height*width
 
         encrypted_img = np.zeros(shape=[height,width, 3], dtype=np.uint8) 
 
-        x_keys, y_keys, z_keys = self.__lorenz_keys_euler()
+        x_keys, y_keys, z_keys = [], [], []
+        if euler:
+            x_keys, y_keys, z_keys = self.__lorenz_keys_euler()
+        else:
+            x_keys, y_keys, z_keys = self.__lorenz_keys_rungeKuta()
 
         k = 0
         for i in range(height):
@@ -138,15 +217,17 @@ class Lorenz:
 
         return encrypted_img
 
-    def decrypt(self, img:np.array, shuffled=True) -> np.array:
+    def decrypt(self, img:np.array, euler=True, shuffled=True) -> np.array:
         height = img.shape[0] 
         width =  img.shape[1]
         self.__steps_num = height*width
 
         decrypted_img = np.zeros(shape=[height,width, 3], dtype=np.uint8) 
-
-        x_keys, y_keys, z_keys = self.__lorenz_keys_euler()
-
+        x_keys, y_keys, z_keys = [], [], []
+        if euler:
+            x_keys, y_keys, z_keys = self.__lorenz_keys_euler()
+        else:
+            x_keys, y_keys, z_keys = self.__lorenz_keys_rungeKuta()
 
         if shuffled:
             decrypted_img = self.__reshuffle_img(img, x_keys, y_keys)
