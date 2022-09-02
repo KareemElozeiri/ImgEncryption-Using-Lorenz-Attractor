@@ -5,21 +5,15 @@
 - [A New Image Encryption Algorithm Based on Lorenz System](https://ieeexplore.ieee.org/document/7861097)
 
 ## Installs:
-- Matplotlib
 ```
-pip install matplotlib
+numpy
+matplotlib
+opencv-python
+flask
 ```
-- python Opencv-2
+- Just Run the following pip install command to install all these packages:
 ```
-pip install cv2
-```
-- Numpy
-```
-pip install numpy
-```
-- Scikit-Image
-```
-pip install scikit-image
+pip install -r requirements.txt
 ```
 
 ## Author:
