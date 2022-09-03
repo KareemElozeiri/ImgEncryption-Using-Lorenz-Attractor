@@ -88,7 +88,7 @@ class Lorenz:
         self.__dt = new_dt
 
     
-    def __lorenz_keys_euler(self) -> Tuple[list, list, list]:
+    def __lorenz_keys_euler(self) -> Tuple[np.array, np.array, np.array]:
         
         x_keys = np.empty(self.__steps_num+1)
         y_keys = np.empty(self.__steps_num+1)
@@ -108,7 +108,7 @@ class Lorenz:
         return x_keys, y_keys, z_keys
     
 
-    def __lorenz_keys_rungeKuta(self)-> Tuple[list, list, list]:
+    def __lorenz_keys_rungeKuta(self)-> Tuple[np.array, np.array, np.array]:
         x_keys = np.empty(self.__steps_num+1)
         y_keys = np.empty(self.__steps_num+1)
         z_keys = np.empty(self.__steps_num+1)
@@ -129,7 +129,7 @@ class Lorenz:
         return x_keys, y_keys, z_keys 
     
 
-    def __shuffle_img(self, img:np.array, x_keys, y_keys)->np.array:
+    def __shuffle_img(self, img:np.array, x_keys:np.array, y_keys:np.array)->np.array:
         height = img.shape[0] 
         width =  img.shape[1]
         shuffled_img = np.zeros(shape=[height, width,3], dtype=np.uint8)
@@ -160,7 +160,7 @@ class Lorenz:
         return shuffled_img
 
 
-    def __reshuffle_img(self, img:np.array, x_keys, y_keys)->np.array:
+    def __reshuffle_img(self, img:np.array, x_keys:np.array, y_keys:np.array)->np.array:
         height = img.shape[0] 
         width =  img.shape[1]
         reshuffled_img = np.zeros(shape=[height, width,3], dtype=np.uint8)
