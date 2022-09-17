@@ -1,0 +1,10 @@
+.main{
+    height:100vh;
+    color:#6c4a7d;
+}
+
+.main hr{
+    width: 25%;
+    background-color:#6c4a7d;
+    height: 3px;
+}
