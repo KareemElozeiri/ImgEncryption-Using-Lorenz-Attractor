@@ -1,5 +1,6 @@
 import numpy as np 
 from typing import Tuple
+
 class Lorenz:
     def __init__(self,x_0:float=0, y_0:float=0, z_0:float=0, a:float=0, b:float=0, r:float=0, dt:float=0.01):
         self.__steps_num = 0
